@@ -1,0 +1,38 @@
+type BirthRegister = record {
+  id : text;
+  sex : text;
+  parentsJob : text;
+  placeOfBirth : text;
+  parentsAddress : text;
+  owner : principal;
+  dateOfBirth : text;
+  name : text;
+  createdAt : nat64;
+  surname : text;
+  fathersName : text;
+  mothersName : text;
+  updatedAt : opt nat64;
+};
+type BirthRegisterPayload = record {
+  sex : text;
+  parentsJob : text;
+  placeOfBirth : text;
+  parentsAddress : text;
+  dateOfBirth : text;
+  name : text;
+  surname : text;
+  fathersName : text;
+  mothersName : text;
+};
+type _AzleResult = variant { Ok : BirthRegister; Err : text };
+type _AzleResult_1 = variant { Ok : vec BirthRegister; Err : text };
+service : () -> {
+  createBirthRegister : (BirthRegisterPayload) -> (_AzleResult);
+  deleteBirthRegister : (text) -> (_AzleResult);
+  getAllBirthRegister : () -> (_AzleResult_1) query;
+  getAllBirthRegisterByName : (text) -> (_AzleResult_1) query;
+  getBirthRegisterById : (text) -> (_AzleResult) query;
+  getBirthRegisterByName : (text) -> (_AzleResult) query;
+  getBirthRegisterByPlaceOfBirth : (text) -> (_AzleResult_1) query;
+  updateBirthRegister : (text, BirthRegisterPayload) -> (_AzleResult);
+}
